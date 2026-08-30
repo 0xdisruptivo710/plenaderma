@@ -1,0 +1,237 @@
+---
+/**
+ * Clinic v1.0 - Plena Derma. A casa na Asa Norte, com fotos reais da fachada
+ * e a narrativa aprovada da transição: mesma clínica, mesma equipe, evoluindo.
+ */
+import { CLINIC } from '../../lib/clinic';
+---
+
+<section id="clinica" class="clinic-v3">
+  <div class="container container--wide clinic-v3__inner">
+    <div class="clinic-v3__media reveal">
+      <figure class="clinic-v3__media-primary">
+        <img
+          src="/clinica/clinica-1.jpg"
+          alt="Fachada da Plena Derma na CLN 309, Asa Norte - letreiro dourado"
+          loading="lazy"
+        />
+      </figure>
+      <figure class="clinic-v3__media-overlap">
+        <img
+          src="/clinica/clinica-2.jpg"
+          alt="Vista da quadra comercial onde fica a Plena Derma"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+
+    <div class="clinic-v3__body reveal">
+      <span class="clinic-v3__outline outline-num" aria-hidden="true">04</span>
+
+      <div class="clinic-v3__body-inner">
+        <h2 class="clinic-v3__title">
+          A casa da<br />
+          <em>Plena Derma.</em>
+        </h2>
+        <p class="clinic-v3__lead">
+          Somos a evolução de uma clínica com mais de 3 anos de história na
+          {CLINIC.address.neighborhood}: a mesma equipe, o mesmo padrão de
+          excelência, agora com liberdade para ir além. São 4 salas de
+          atendimento na CLN 309, num espaço pensado para acolher você da
+          recepção ao pós-protocolo.
+        </p>
+
+        <ul class="clinic-v3__features">
+          <li class="clinic-v3__feature">
+            <span class="clinic-v3__feature-bullet" aria-hidden="true"></span>
+            <div>
+              <h4 class="clinic-v3__feature-title">A equipe que você já conhece</h4>
+              <p class="clinic-v3__feature-body">
+                Cada profissional da Plena Derma compartilha o mesmo
+                compromisso: um atendimento humano, individualizado e
+                guiado pela avaliação.
+              </p>
+            </div>
+          </li>
+          <li class="clinic-v3__feature">
+            <span class="clinic-v3__feature-bullet" aria-hidden="true"></span>
+            <div>
+              <h4 class="clinic-v3__feature-title">Tecnologia da casa</h4>
+              <p class="clinic-v3__feature-body">
+                Ultraformer e Soprano Ice Platinum residentes na clínica,
+                além do portfólio completo de injetáveis, lasers e
+                protocolos corporais.
+              </p>
+            </div>
+          </li>
+        </ul>
+
+        <p class="clinic-v3__address">
+          {CLINIC.address.street} · {CLINIC.address.neighborhood} ·
+          {CLINIC.address.city}, {CLINIC.address.state}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .clinic-v3 {
+    background-color: #fff;
+    color: var(--brand-dark);
+    padding-block: clamp(6rem, 12vh, 10rem);
+    position: relative;
+  }
+
+  .clinic-v3__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-9);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .clinic-v3__inner {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+    }
+  }
+
+  /* Media stack */
+  .clinic-v3__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+  @media (min-width: 900px) {
+    .clinic-v3__media { aspect-ratio: auto; min-height: 32rem; }
+  }
+
+  .clinic-v3__media-primary {
+    position: relative;
+    z-index: 1;
+    width: 92%;
+    margin-inline-start: auto;
+    aspect-ratio: 16 / 10;
+    box-shadow: var(--shadow-lift);
+    overflow: hidden;
+  }
+  .clinic-v3__media-primary img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) brightness(0.95);
+  }
+
+  .clinic-v3__media-overlap {
+    position: absolute;
+    inset-block-end: 3rem;
+    inset-inline-start: 0;
+    z-index: 2;
+    width: 60%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--brand-light);
+    padding: var(--space-3);
+    box-shadow: var(--shadow-soft);
+    transform: translateX(-1.5rem);
+    overflow: hidden;
+  }
+  @media (min-width: 900px) {
+    .clinic-v3__media-overlap { transform: translateX(-3rem); width: 60%; }
+  }
+  .clinic-v3__media-overlap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Body */
+  .clinic-v3__body {
+    position: relative;
+    padding-block-start: var(--space-7);
+  }
+  @media (min-width: 900px) {
+    .clinic-v3__body { padding-inline-start: var(--space-6); }
+  }
+
+  .clinic-v3__outline {
+    display: none;
+    position: absolute;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+    z-index: 0;
+    pointer-events: none;
+  }
+  @media (min-width: 900px) { .clinic-v3__outline { display: block; } }
+
+  .clinic-v3__body-inner { position: relative; z-index: 1; }
+
+  .clinic-v3__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.25rem, 4vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: var(--track-h2);
+    color: var(--brand-dark);
+    margin-block-end: var(--space-5);
+  }
+  .clinic-v3__title em {
+    font-style: italic;
+    color: var(--brand-primary);
+  }
+
+  .clinic-v3__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin-block-end: var(--space-7);
+    max-width: 36rem;
+  }
+
+  .clinic-v3__features {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-block-end: var(--space-7);
+  }
+  .clinic-v3__feature {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--space-4);
+    align-items: flex-start;
+  }
+  .clinic-v3__feature-bullet {
+    width: 8px;
+    height: 8px;
+    margin-block-start: 0.5rem;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-accent);
+    flex-shrink: 0;
+  }
+  .clinic-v3__feature-title {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-base);
+    color: var(--brand-dark);
+    margin-block-end: var(--space-2);
+  }
+  .clinic-v3__feature-body {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    max-width: 32rem;
+  }
+
+  .clinic-v3__address {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    border-block-start: 1px solid var(--border-faint);
+    padding-block-start: var(--space-4);
+  }
+</style>

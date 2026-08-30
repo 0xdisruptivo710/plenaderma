@@ -1,0 +1,225 @@
+---
+/**
+ * Contato - endereço real, como chegar (roteiro do IG oficial), WhatsApp e mapa.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const wa = whatsappUrl(WA_MESSAGES.general);
+const title = 'Contato e Endereço | Plena Derma - CLN 309, Asa Norte, Brasília';
+const description =
+  'A Plena Derma fica na CLN 309, Bloco C, Loja 30, Asa Norte, Brasília. Agende sua avaliação pelo WhatsApp e veja como chegar de carro ou transporte.';
+const mapEmbed =
+  'https://www.google.com/maps?q=CLN+309+Bloco+C+-+Asa+Norte,+Bras%C3%ADlia+-+DF,+70755-530&output=embed';
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader slot="header" tone="light" />
+
+  <section class="contato">
+    <div class="container container--wide contato__inner">
+      <div class="contato__body reveal">
+        <nav class="contato__crumbs" aria-label="Breadcrumb">
+          <a href="/">Início</a>
+          <span class="contato__crumb-sep" aria-hidden="true">/</span>
+          <span aria-current="page">Contato</span>
+        </nav>
+
+        <h1 class="contato__title">Vem <em>conversar.</em></h1>
+        <p class="contato__lead">
+          O atendimento da Plena Derma começa no WhatsApp: é por lá que a
+          equipe entende o que você procura e agenda a sua avaliação.
+        </p>
+
+        <a href={wa} target="_blank" rel="noopener noreferrer" class="btn btn--dark contato__cta">
+          Agende sua avaliação
+        </a>
+
+        <dl class="contato__list">
+          <div class="contato__item">
+            <dt>Endereço</dt>
+            <dd>
+              {CLINIC.address.street}<br />
+              {CLINIC.address.neighborhood}, {CLINIC.address.city} · {CLINIC.address.state}<br />
+              CEP {CLINIC.address.postalCode}
+            </dd>
+          </div>
+          <div class="contato__item">
+            <dt>WhatsApp</dt>
+            <dd>
+              <a href={wa} target="_blank" rel="noopener noreferrer">{CLINIC.phone}</a>
+            </dd>
+          </div>
+          <div class="contato__item">
+            <dt>Instagram</dt>
+            <dd>
+              <a href={CLINIC.social.instagram} target="_blank" rel="noopener noreferrer">@plenaderma</a>
+            </dd>
+          </div>
+          <div class="contato__item">
+            <dt>Atendimento</dt>
+            <dd>{CLINIC.hours.fullLine}</dd>
+          </div>
+        </dl>
+
+        <div class="contato__howto">
+          <h2 class="contato__howto-title">Como chegar de carro</h2>
+          <p>
+            Entre pela W3 Norte na altura da 309, dobre na quadra comercial e
+            procure o Bloco C. A loja 30 fica logo na entrada, fácil de achar
+            e com estacionamento na própria quadra.
+          </p>
+        </div>
+      </div>
+
+      <div class="contato__map reveal" style="--reveal-delay: 2">
+        <iframe
+          src={mapEmbed}
+          title="Mapa: Plena Derma na CLN 309, Asa Norte, Brasília"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <a
+          href={CLINIC.mapLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contato__map-link link-edit"
+        >
+          Abrir no Google Maps →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <CtaCine
+    headline="Sua avaliação é <em>o começo de tudo.</em>"
+    lead="Conte o que te incomoda e a equipe desenha o protocolo certo pra você."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" />
+</BaseLayout>
+
+<style>
+  .contato {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(8rem, 16vh, 11rem) clamp(5rem, 10vh, 8rem);
+  }
+
+  .contato__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-9);
+    align-items: start;
+  }
+  @media (min-width: 1000px) {
+    .contato__inner { grid-template-columns: 6fr 6fr; gap: var(--space-10); }
+  }
+
+  .contato__crumbs {
+    display: flex;
+    gap: var(--space-2);
+    margin-block-end: var(--space-7);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+  }
+  .contato__crumbs a { color: var(--brand-accent); }
+  .contato__crumb-sep { color: var(--brand-gold); }
+
+  .contato__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(3rem, 7vw, 6rem);
+    letter-spacing: var(--track-tight);
+    line-height: 0.95;
+    margin-block-end: var(--space-5);
+  }
+  .contato__title em { font-style: italic; color: var(--brand-accent); }
+
+  .contato__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    max-width: 32rem;
+    margin-block-end: var(--space-6);
+  }
+
+  .contato__cta { margin-block-end: var(--space-8); }
+
+  .contato__list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    border-block-start: 1px solid var(--border-faint);
+    padding-block-start: var(--space-6);
+    margin-block-end: var(--space-8);
+  }
+
+  .contato__item dt {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-3);
+  }
+  .contato__item dd,
+  .contato__item dd a {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.7;
+  }
+  .contato__item dd a {
+    color: var(--brand-dark);
+    border-block-end: 1px solid var(--border-faint);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .contato__item dd a:hover { color: var(--brand-accent); }
+
+  .contato__howto {
+    background-color: var(--brand-cream);
+    padding: var(--space-6);
+    border: 1px solid var(--border-faint);
+  }
+  .contato__howto-title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-medium);
+    font-size: 1.3rem;
+    margin-block-end: var(--space-3);
+  }
+  .contato__howto p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  .contato__map {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .contato__map iframe {
+    width: 100%;
+    aspect-ratio: 4 / 4.4;
+    border: 1px solid var(--border-faint);
+    filter: grayscale(0.4) sepia(0.12);
+    display: block;
+  }
+  .contato__map-link { color: var(--brand-accent); align-self: flex-end; }
+</style>

@@ -1,0 +1,173 @@
+---
+/**
+ * TeamGrid v1.0 - equipe real da Plena Derma, com o jardim vertical da casa ao fundo.
+ * Nomes e cargos conforme apresentação oficial no @plenaderma.
+ * TODO go-live: [CONFIRMAR] registros profissionais e responsável técnico.
+ */
+const doutoras = [
+  { img: '/equipe/rayane.jpg',   name: 'Dra. Rayane Limeira',     role: 'Biomédica esteta · Harmonização facial e corporal' },
+  { img: '/equipe/helen.jpg',    name: 'Dra. Helen Nascimento',   role: 'Biomédica esteta · Harmonização facial e corporal' },
+  { img: '/equipe/gioconda.jpg', name: 'Dra. Gioconda Holenbach', role: 'Biomédica esteta · Harmonização facial e corporal' },
+  { img: '/equipe/andressa.jpg', name: 'Dra. Andressa Barros',    role: 'Biomédica esteta · Harmonização facial e corporal' },
+] as const;
+
+const time = [
+  { img: '/equipe/luana.jpg',   name: 'Luana',   role: 'Gerente comercial' },
+  { img: '/equipe/vitoria.jpg', name: 'Vitória', role: 'Consultora de vendas' },
+  { img: '/equipe/silmara.jpg', name: 'Silmara', role: 'Consultora de vendas' },
+] as const;
+---
+
+<section class="team">
+  <div class="container container--wide">
+    <header class="team__head reveal">
+      <div>
+        <p class="team__eyebrow">Quem cuida de você</p>
+        <h2 class="team__title">Uma mesma forma<br /><em>de cuidar.</em></h2>
+      </div>
+      <p class="team__lead">
+        Cada profissional da Plena Derma compartilha o mesmo compromisso:
+        um atendimento humano, individualizado e guiado pela excelência.
+      </p>
+    </header>
+
+    <div class="team__grid team__grid--doutoras">
+      {doutoras.map((p, i) => (
+        <figure class="team__card reveal" style={`--reveal-delay: ${i}`}>
+          <div class="team__photo">
+            <img src={p.img} alt={`${p.name}, ${p.role.toLowerCase()}`} loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="team__name">{p.name}</span>
+            <span class="team__role">{p.role}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    <p class="team__divider reveal">E quem recebe você</p>
+
+    <div class="team__grid team__grid--time">
+      {time.map((p, i) => (
+        <figure class="team__card reveal" style={`--reveal-delay: ${i}`}>
+          <div class="team__photo">
+            <img src={p.img} alt={`${p.name}, ${p.role.toLowerCase()}`} loading="lazy" />
+          </div>
+          <figcaption>
+            <span class="team__name">{p.name}</span>
+            <span class="team__role">{p.role}</span>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  .team__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-block-end: clamp(3rem, 6vh, 5rem);
+  }
+  @media (min-width: 900px) {
+    .team__head { flex-direction: row; align-items: flex-end; }
+  }
+
+  .team__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-3);
+  }
+
+  .team__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.02;
+  }
+  .team__title em { font-style: italic; color: var(--brand-accent); }
+
+  .team__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    max-width: 26rem;
+    line-height: var(--leading-body);
+  }
+  @media (min-width: 900px) {
+    .team__lead { text-align: end; margin-block-end: 0.5rem; }
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-5);
+  }
+  @media (min-width: 900px) {
+    .team__grid--doutoras { grid-template-columns: repeat(4, 1fr); }
+    .team__grid--time { grid-template-columns: repeat(3, 1fr); max-width: 75%; }
+  }
+
+  .team__photo {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-block-end: var(--space-4);
+  }
+  .team__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    filter: contrast(1.04) saturate(0.96);
+    transition: transform 1200ms var(--ease-out);
+  }
+  .team__card:hover .team__photo img { transform: scale(1.04); }
+
+  .team__name {
+    display: block;
+    font-family: var(--font-serif);
+    font-weight: var(--weight-medium);
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    margin-block-end: var(--space-1);
+  }
+  .team__role {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  .team__divider {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(1.3rem, 2vw, 1.75rem);
+    color: var(--brand-accent);
+    margin-block: clamp(3rem, 6vh, 4.5rem) var(--space-6);
+    display: flex;
+    align-items: center;
+    gap: var(--space-5);
+  }
+  .team__divider::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: var(--border-faint);
+  }
+</style>

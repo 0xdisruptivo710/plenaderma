@@ -1,0 +1,97 @@
+---
+/**
+ * Sobre - a história da clínica, a equipe real e a casa.
+ * Narrativa aprovada: mesma clínica, mesma equipe, evoluindo para melhor.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+import PageHero from '../sections/PageHero.astro';
+import TeamGrid from '../sections/sobre/TeamGrid.astro';
+import ClinicGallery from '../sections/home/ClinicGallery.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const wa = whatsappUrl(WA_MESSAGES.general);
+const title = 'Sobre a Plena Derma | Clínica de Estética na Asa Norte, Brasília';
+const description =
+  'A mesma clínica e a mesma equipe, com mais de 3 anos de história na Asa Norte, agora Plena Derma. Conheça as doutoras, a casa de 4 salas e a nossa forma de cuidar.';
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader slot="header" tone="light" />
+
+  <PageHero
+    crumb="Sobre"
+    eyebrow="Nossa História"
+    title="A mesma clínica,<br /><em>evoluindo pra melhor.</em>"
+    lead="A Plena Derma nasce de uma clínica com mais de 3 anos de história na Asa Norte. A equipe é a mesma, o padrão de excelência é o mesmo, e agora temos liberdade pra trazer novas tecnologias e estender nosso cuidado."
+    primaryHref={wa}
+    video="/video/sobre.mp4"
+    poster="/video/sobre-poster.jpg"
+  />
+
+  <section class="historia">
+    <div class="container container--narrow">
+      <p class="historia__p reveal">
+        Quem chega na CLN 309 encontra o que sempre encontrou: as mesmas
+        doutoras, o mesmo acolhimento, as 4 salas de atendimento e o cuidado
+        pensado exclusivamente pra cada pessoa. O que mudou foi o nome na
+        fachada e o tamanho do nosso horizonte.
+      </p>
+      <p class="historia__p reveal" style="--reveal-delay: 1">
+        Como Plena Derma, seguimos carreira solo com liberdade para escolher
+        as tecnologias, os produtos e os protocolos que acreditamos. Foi assim
+        que a depilação a laser com Soprano Ice Platinum chegou, e é assim que
+        vamos continuar estendendo nosso cuidado.
+      </p>
+      <p class="historia__quote reveal" style="--reveal-delay: 2">
+        "Autoestima é o nosso item número um.<br />O resto é técnica, e técnica a gente tem."
+      </p>
+    </div>
+  </section>
+
+  <TeamGrid />
+
+  <ClinicGallery />
+
+  <CtaCine
+    headline="Vem conhecer <em>a casa.</em>"
+    lead="Agende sua avaliação e conheça a equipe pessoalmente. O atendimento começa no WhatsApp."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" />
+</BaseLayout>
+
+<style>
+  .historia {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+    border-block-start: 1px solid var(--border-faint);
+  }
+
+  .historia__p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin-block-end: var(--space-6);
+  }
+
+  .historia__quote {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.25;
+    color: var(--brand-accent);
+    margin-block-start: var(--space-8);
+    padding-inline-start: var(--space-6);
+    border-inline-start: 1px solid var(--brand-gold);
+  }
+</style>

@@ -1,0 +1,125 @@
+---
+/**
+ * IncludedList v1.0 - lista tipográfica do que o cuidado inclui.
+ * Linhas com hairline, hover com fundo areia. A tipografia faz o trabalho.
+ */
+import type { IncludedItem } from '../lib/treatments';
+
+interface Props {
+  eyebrow?: string;
+  headline: string;
+  items: IncludedItem[];
+  note?: string;
+}
+
+const { eyebrow = 'O que inclui', headline, items, note } = Astro.props;
+---
+
+<section class="ilist">
+  <div class="container container--wide ilist__inner">
+    <header class="ilist__head reveal">
+      <p class="ilist__eyebrow">{eyebrow}</p>
+      <h2 class="ilist__title" set:html={headline} />
+    </header>
+
+    <ul class="ilist__list">
+      {items.map((item, i) => (
+        <li class="ilist__row reveal" style={`--reveal-delay: ${i % 3}`}>
+          <span class="ilist__name">{item.name}</span>
+          <span class="ilist__desc">{item.desc}</span>
+        </li>
+      ))}
+    </ul>
+
+    {note && <p class="ilist__note">{note}</p>}
+  </div>
+</section>
+
+<style>
+  .ilist {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  .ilist__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  @media (min-width: 900px) {
+    .ilist__inner {
+      grid-template-columns: 4fr 8fr;
+      gap: var(--space-9);
+      align-items: start;
+    }
+  }
+
+  .ilist__head { position: sticky; top: 12vh; }
+
+  .ilist__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-3);
+  }
+
+  .ilist__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.08;
+  }
+  .ilist__title :global(em) { font-style: italic; color: var(--brand-accent); }
+
+  .ilist__list {
+    display: flex;
+    flex-direction: column;
+    border-block-start: 1px solid var(--border-faint);
+  }
+
+  .ilist__row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-2);
+    padding: var(--space-5) var(--space-4);
+    border-block-end: 1px solid var(--border-faint);
+    transition: background-color var(--dur-base) var(--ease-out);
+  }
+  @media (min-width: 700px) {
+    .ilist__row {
+      grid-template-columns: minmax(14rem, 2fr) 3fr;
+      gap: var(--space-6);
+      align-items: baseline;
+    }
+  }
+  .ilist__row:hover { background-color: var(--brand-sand); }
+
+  .ilist__name {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-medium);
+    font-size: clamp(1.2rem, 1.8vw, 1.5rem);
+    line-height: 1.2;
+  }
+
+  .ilist__desc {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .ilist__note {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+    margin-block-start: var(--space-4);
+  }
+</style>

@@ -1,0 +1,143 @@
+---
+/**
+ * Página dedicada de cada frente de cuidado.
+ * Dados centralizados em src/lib/treatments.ts.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+import PageHero from '../sections/PageHero.astro';
+import IncludedList from '../sections/IncludedList.astro';
+import ProcessSteps from '../sections/ProcessSteps.astro';
+import FaqEditorial from '../sections/FaqEditorial.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import { TREATMENTS } from '../lib/treatments';
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+export function getStaticPaths() {
+  return TREATMENTS.map((t) => ({ params: { slug: t.slug }, props: { t } }));
+}
+
+const { t } = Astro.props;
+const wa = whatsappUrl(WA_MESSAGES[t.waKey]);
+
+const title = `${t.name} na Asa Norte, Brasília | Plena Derma`;
+const description = `${t.indexDesc} Protocolos personalizados na Plena Derma, Asa Norte. Agende sua avaliação.`;
+
+const procedureSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'MedicalProcedure',
+  name: t.name,
+  description: t.indexDesc,
+  procedureType: 'https://schema.org/CosmeticProcedure',
+};
+---
+
+<BaseLayout title={title} description={description} procedureSchema={procedureSchema}>
+  <SiteHeader slot="header" tone="light" />
+
+  <PageHero
+    crumb={t.name}
+    eyebrow={t.tag === 'Novo' ? 'Novo na Plena Derma' : t.tag}
+    title={t.heroTitle}
+    lead={t.heroLead}
+    primaryHref={wa}
+    video={t.heroVideo}
+    poster={t.heroPoster}
+    image={t.heroImage}
+    imageAlt={t.name}
+  />
+
+  <section class="definition">
+    <div class="container container--wide definition__inner">
+      <div class="definition__label reveal">
+        <p class="definition__eyebrow">{t.definitionEyebrow}</p>
+      </div>
+      <div class="definition__body">
+        <h2 class="definition__title reveal">{t.definitionTitle}</h2>
+        {t.definitionBody.map((p, i) => (
+          <p class="definition__p reveal" style={`--reveal-delay: ${i + 1}`}>{p}</p>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <IncludedList
+    headline={'O que você encontra <em>aqui na Plena Derma.</em>'}
+    items={t.included}
+    note="Cada protocolo é definido na avaliação, de acordo com o seu caso."
+  />
+
+  <ProcessSteps />
+
+  <FaqEditorial headline={`Perguntas frequentes sobre<br /><em>${t.name.toLowerCase()}</em>`} items={t.faq} />
+
+  <CtaCine
+    headline={`Vamos conversar sobre <em>o seu caso?</em>`}
+    lead="Conte o que te incomoda e a equipe desenha o protocolo certo pra você. O atendimento começa no WhatsApp."
+    ctaHref={wa}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" message={WA_MESSAGES[t.waKey]} />
+</BaseLayout>
+
+<style>
+  .definition {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+    border-block-start: 1px solid var(--border-faint);
+  }
+
+  .definition__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  @media (min-width: 900px) {
+    .definition__inner {
+      grid-template-columns: 4fr 8fr;
+      gap: var(--space-9);
+    }
+  }
+
+  .definition__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    position: relative;
+    padding-inline-start: 2.5rem;
+  }
+  .definition__eyebrow::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--brand-accent);
+  }
+
+  .definition__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 3.6vw, 3.25rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.08;
+    margin-block-end: var(--space-6);
+  }
+
+  .definition__p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-base);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    max-width: var(--measure);
+    margin-block-end: var(--space-5);
+  }
+</style>

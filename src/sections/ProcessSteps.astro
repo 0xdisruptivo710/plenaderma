@@ -1,0 +1,121 @@
+---
+/**
+ * ProcessSteps v1.0 - o método da casa em 3 movimentos.
+ * Usado em todas as páginas de cuidado.
+ */
+const steps = [
+  {
+    num: '01',
+    name: 'Avaliação',
+    desc: 'Tudo começa por aqui. Você conta o que te incomoda e a equipe analisa sua pele, sua anatomia e sua história. Sem pressa, sem julgamento.',
+  },
+  {
+    num: '02',
+    name: 'Protocolo personalizado',
+    desc: 'Nada de pacote de prateleira: as técnicas, as etapas e o ritmo são desenhados pra você, combinando o que fizer sentido pro seu caso.',
+  },
+  {
+    num: '03',
+    name: 'Acompanhamento',
+    desc: 'A equipe segue por perto a cada sessão, ajustando o protocolo conforme a sua evolução e mantendo o cuidado depois dele.',
+  },
+] as const;
+---
+
+<section class="psteps">
+  <div class="container container--wide">
+    <header class="psteps__head reveal">
+      <p class="psteps__eyebrow">Como funciona</p>
+      <h2 class="psteps__title">Seu cuidado em <em>três movimentos.</em></h2>
+    </header>
+
+    <ol class="psteps__list">
+      {steps.map((s, i) => (
+        <li class="psteps__step reveal" style={`--reveal-delay: ${i + 1}`}>
+          <span class="psteps__num">{s.num}</span>
+          <h3 class="psteps__name">{s.name}</h3>
+          <p class="psteps__desc">{s.desc}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .psteps {
+    background-color: var(--brand-cream);
+    color: var(--brand-dark);
+    padding-block: clamp(5rem, 10vh, 8rem);
+  }
+
+  .psteps__head {
+    margin-block-end: clamp(3rem, 6vh, 5rem);
+  }
+
+  .psteps__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-3);
+  }
+
+  .psteps__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.05;
+  }
+  .psteps__title em { font-style: italic; color: var(--brand-accent); }
+
+  .psteps__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-block-start: 1px solid var(--border-faint);
+  }
+  @media (min-width: 800px) {
+    .psteps__list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-8);
+    }
+  }
+
+  .psteps__step {
+    padding-block: var(--space-6);
+    border-block-end: 1px solid var(--border-faint);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  @media (min-width: 800px) {
+    .psteps__step { border-block-end: none; padding-block: var(--space-7) 0; }
+  }
+
+  .psteps__num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--brand-accent);
+    opacity: 0.6;
+  }
+
+  .psteps__name {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-medium);
+    font-size: clamp(1.3rem, 2vw, 1.6rem);
+    margin-block-start: var(--space-2);
+  }
+
+  .psteps__desc {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    max-width: 26rem;
+  }
+</style>

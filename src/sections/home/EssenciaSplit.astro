@@ -1,0 +1,219 @@
+---
+/**
+ * EssenciaSplit v1.0 - manifesto da casa em split assimétrico.
+ * Foto real bleeding na borda esquerda + statement serif com itálicos dourados.
+ */
+---
+
+<section id="essencia" class="essencia">
+  <div class="essencia__media reveal">
+    <img
+      src="/fotos/retrato-sardas.jpg"
+      alt="Mulher sorrindo de olhos fechados, pele real com sardas, em luz quente"
+      loading="lazy"
+    />
+    <svg class="essencia__botanical" viewBox="0 0 50 100" aria-hidden="true">
+      <path d="M25,0 C25,30 10,50 10,70 C10,90 25,100 25,100" />
+      <path d="M15,60 C30,50 40,30 45,10" />
+      <path d="M25,30 C33,26 40,18 43,8" />
+    </svg>
+  </div>
+
+  <div class="essencia__body">
+    <p class="essencia__eyebrow reveal">01 - Nossa Essência</p>
+
+    <h2 class="essencia__statement reveal" style="--reveal-delay: 1">
+      Você não precisa parecer outra pessoa. É continuar
+      <em>se reconhecendo no espelho:</em> um rosto mais leve, firme e
+      alinhado com a forma <em>como você se sente.</em>
+    </h2>
+
+    <div class="essencia__cols reveal" style="--reveal-delay: 2">
+      <p class="essencia__p">
+        Na Plena Derma, cada protocolo nasce de uma avaliação atenta,
+        porque autoestima é o nosso item número um. A conversa começa
+        sem pressa, sem julgamento, com o olhar certo pra o que você precisa.
+      </p>
+      <p class="essencia__p">
+        É uma nova forma de cuidar da sua pele: do rosto ao corpo, da
+        primeira conversa ao acompanhamento, existe uma equipe preparada
+        para oferecer segurança, acolhimento e um cuidado pensado
+        exclusivamente para você.
+      </p>
+    </div>
+
+    <ul class="essencia__values reveal" style="--reveal-delay: 3">
+      <li class="essencia__value">
+        <span class="essencia__value-num">a.</span>
+        <span class="essencia__value-name">Acolhimento</span>
+        <span class="essencia__value-desc">Um espaço que abraça, longe da frieza clínica</span>
+      </li>
+      <li class="essencia__value">
+        <span class="essencia__value-num">b.</span>
+        <span class="essencia__value-name">Avaliação primeiro</span>
+        <span class="essencia__value-desc">Nenhum protocolo antes de entender você</span>
+      </li>
+      <li class="essencia__value">
+        <span class="essencia__value-num">c.</span>
+        <span class="essencia__value-name">Autoestima</span>
+        <span class="essencia__value-desc">O resultado que a gente persegue de verdade</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .essencia {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    overflow: hidden;
+    padding-block: clamp(5rem, 12vh, 10rem);
+    gap: var(--space-8);
+  }
+  @media (min-width: 1000px) {
+    .essencia {
+      grid-template-columns: 5fr 7fr;
+      gap: clamp(3rem, 6vw, 6rem);
+      padding-block: clamp(7rem, 14vh, 12rem);
+    }
+  }
+
+  /* Foto bleeding à esquerda */
+  .essencia__media {
+    position: relative;
+    width: min(100%, 34rem);
+    margin-inline: var(--gutter-x) auto;
+  }
+  @media (min-width: 1000px) {
+    .essencia__media {
+      margin-inline: 0 auto;
+      width: 88%;
+    }
+  }
+  .essencia__media img {
+    width: 100%;
+    aspect-ratio: 4 / 4.6;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: contrast(1.04) saturate(0.95);
+    box-shadow: var(--shadow-lift);
+  }
+
+  .essencia__botanical {
+    position: absolute;
+    inset-block-end: -3rem;
+    inset-inline-end: -2.5rem;
+    width: 6rem;
+    height: 12rem;
+    stroke: var(--brand-accent);
+    stroke-width: 0.6;
+    fill: none;
+    opacity: 0.55;
+    pointer-events: none;
+  }
+
+  /* Corpo */
+  .essencia__body {
+    padding-inline: var(--gutter-x);
+    max-width: 46rem;
+  }
+  @media (min-width: 1000px) {
+    .essencia__body { padding-inline-start: 0; }
+  }
+
+  .essencia__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-6);
+    position: relative;
+    padding-inline-start: 2.5rem;
+  }
+  .essencia__eyebrow::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--brand-accent);
+  }
+
+  .essencia__statement {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.75rem, 3.4vw, 3rem);
+    line-height: 1.18;
+    letter-spacing: var(--track-h2);
+    margin-block-end: var(--space-7);
+    text-wrap: balance;
+  }
+  .essencia__statement em {
+    font-style: italic;
+    color: var(--brand-accent);
+  }
+
+  .essencia__cols {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+    margin-block-end: var(--space-8);
+  }
+  @media (min-width: 700px) {
+    .essencia__cols { grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+  }
+
+  .essencia__p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+  }
+
+  /* Valores */
+  .essencia__values {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-block-start: 1px solid var(--border-faint);
+  }
+  @media (min-width: 700px) {
+    .essencia__values { grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+  }
+
+  .essencia__value {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding-block: var(--space-5);
+    border-block-end: 1px solid var(--border-faint);
+  }
+  @media (min-width: 700px) {
+    .essencia__value { border-block-end: none; }
+  }
+
+  .essencia__value-num {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--brand-accent);
+  }
+  .essencia__value-name {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-medium);
+    font-size: var(--text-sm);
+    color: var(--brand-dark);
+  }
+  .essencia__value-desc {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: 13px;
+    color: var(--text-soft);
+    line-height: 1.5;
+  }
+</style>

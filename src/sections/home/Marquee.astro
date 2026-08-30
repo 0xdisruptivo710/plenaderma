@@ -1,0 +1,84 @@
+---
+/**
+ * Marquee v1.0 - faixa cinematográfica com os cuidados da casa em serif gigante.
+ */
+const items = [
+  'Ultraformer',
+  'Toxina Botulínica',
+  'Preenchimento',
+  'Bioestimuladores',
+  'Lavieen',
+  'Laser de CO2',
+  'Depilação a Laser',
+  'Harmonização Glútea',
+];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {[0, 1].map(() => (
+      <div class="marquee__group">
+        {items.map((item) => (
+          <span class="marquee__item">
+            {item}
+            <span class="marquee__dot"></span>
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .marquee {
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    overflow: hidden;
+    padding-block: clamp(1.5rem, 3vh, 2.5rem);
+    border-block-end: 1px solid rgba(197, 168, 128, 0.2);
+  }
+
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 70s linear infinite;
+  }
+
+  .marquee__group {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    padding-inline-end: clamp(1.5rem, 3vw, 3rem);
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-style: italic;
+    font-size: clamp(2rem, 4.5vw, 4rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1.1;
+    color: rgba(250, 248, 245, 0.85);
+    white-space: nowrap;
+  }
+
+  .marquee__dot {
+    width: 8px;
+    height: 8px;
+    border-radius: var(--radius-full);
+    background-color: var(--brand-gold);
+    opacity: 0.8;
+  }
+
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track { animation: none; }
+  }
+</style>

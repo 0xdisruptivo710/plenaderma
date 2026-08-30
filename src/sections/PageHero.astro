@@ -1,0 +1,206 @@
+---
+/**
+ * PageHero v1.0 - hero das subpáginas com vídeo-loop ou imagem.
+ * Split assimétrico: texto à esquerda, mídia bleeding até a borda direita.
+ */
+interface Props {
+  crumb: string;
+  eyebrow: string;
+  /** HTML (em itálico permitido) */
+  title: string;
+  lead: string;
+  primaryHref: string;
+  primaryLabel?: string;
+  video?: string;
+  poster?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  crumb,
+  eyebrow,
+  title,
+  lead,
+  primaryHref,
+  primaryLabel = 'Agende sua avaliação',
+  video,
+  poster,
+  image,
+  imageAlt = '',
+} = Astro.props;
+---
+
+<section class="phero">
+  <div class="phero__inner">
+    <div class="phero__body reveal">
+      <nav class="phero__crumbs" aria-label="Breadcrumb">
+        <a href="/">Início</a>
+        <span class="phero__crumb-sep" aria-hidden="true">/</span>
+        <span aria-current="page">{crumb}</span>
+      </nav>
+
+      <p class="phero__eyebrow">{eyebrow}</p>
+      <h1 class="phero__title" set:html={title} />
+      <p class="phero__lead">{lead}</p>
+
+      <div class="phero__actions">
+        <a href={primaryHref} target="_blank" rel="noopener noreferrer" class="btn btn--dark">
+          {primaryLabel}
+        </a>
+      </div>
+    </div>
+
+    <div class="phero__media reveal" style="--reveal-delay: 2">
+      {video ? (
+        <video
+          src={video}
+          poster={poster}
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-hidden="true"
+        ></video>
+      ) : (
+        <img src={image} alt={imageAlt} loading="eager" fetchpriority="high" />
+      )}
+      <div class="phero__media-frame" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .phero {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block-start: clamp(6rem, 12vh, 9rem);
+    overflow: hidden;
+  }
+
+  .phero__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    gap: var(--space-8);
+  }
+  @media (min-width: 1000px) {
+    .phero__inner {
+      grid-template-columns: 6fr 6fr;
+      gap: clamp(3rem, 5vw, 5rem);
+      min-height: 72vh;
+    }
+  }
+
+  .phero__body {
+    padding-inline: var(--gutter-x);
+    max-width: 44rem;
+    justify-self: end;
+    width: 100%;
+    padding-block-start: var(--space-6);
+  }
+  @media (min-width: 1000px) {
+    .phero__body {
+      padding-inline-start: clamp(1.5rem, 4vw, 5rem);
+      padding-block: var(--space-9);
+    }
+  }
+
+  .phero__crumbs {
+    display: flex;
+    gap: var(--space-2);
+    align-items: center;
+    margin-block-end: var(--space-7);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+  }
+  .phero__crumbs a {
+    color: var(--brand-accent);
+    transition: color var(--dur-fast) var(--ease-out);
+  }
+  .phero__crumbs a:hover { color: var(--brand-dark); }
+  .phero__crumb-sep { color: var(--brand-gold); }
+
+  .phero__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono-wide);
+    color: var(--brand-accent);
+    margin-block-end: var(--space-5);
+    position: relative;
+    padding-inline-start: 2.5rem;
+  }
+  .phero__eyebrow::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: 50%;
+    width: 1.5rem;
+    height: 1px;
+    background-color: var(--brand-accent);
+  }
+
+  .phero__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.75rem, 6vw, 5.5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 0.98;
+    margin-block-end: var(--space-6);
+    text-wrap: balance;
+  }
+  .phero__title :global(em) {
+    font-style: italic;
+    color: var(--brand-accent);
+  }
+
+  .phero__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-lg);
+    color: var(--text-muted);
+    line-height: var(--leading-body);
+    margin-block-end: var(--space-7);
+    max-width: 34rem;
+  }
+
+  .phero__actions {
+    display: flex;
+    gap: var(--space-5);
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  /* Mídia bleeding à direita */
+  .phero__media {
+    position: relative;
+    width: 100%;
+    height: clamp(20rem, 55vw, 30rem);
+  }
+  @media (min-width: 1000px) {
+    .phero__media { height: 100%; min-height: 72vh; }
+  }
+  .phero__media video,
+  .phero__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: contrast(1.05) saturate(0.94) brightness(0.97);
+    display: block;
+  }
+  .phero__media-frame {
+    position: absolute;
+    inset: var(--space-5);
+    border: 1px solid rgba(250, 248, 245, 0.35);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phero__media video { display: none; }
+  }
+</style>

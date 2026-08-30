@@ -1,0 +1,164 @@
+---
+/**
+ * Philosophy v1.0 - Plena Derma. Nossa essência: acolhimento + autoestima.
+ * Copy derivado da voz real do @plenaderma.
+ */
+---
+
+<section id="essencia" class="philosophy-v3">
+  <div class="container container--wide philosophy-v3__inner">
+    <aside class="philosophy-v3__numcol">
+      <span class="outline-num">01</span>
+      <p class="philosophy-v3__label">Nossa Essência</p>
+    </aside>
+
+    <div class="philosophy-v3__body reveal">
+      <h2 class="philosophy-v3__heading">
+        Você não precisa<br />
+        parecer outra pessoa.
+      </h2>
+      <p class="philosophy-v3__p">
+        É continuar se reconhecendo no espelho: um rosto mais leve, firme
+        e alinhado com a forma como você se sente. Na Plena Derma, cada
+        protocolo nasce de uma avaliação atenta, porque autoestima é o
+        nosso item número um.
+      </p>
+      <p class="philosophy-v3__p">
+        A conversa começa sempre pela avaliação. Sem pressa, sem julgamento,
+        com o olhar certo pra o que você precisa. É uma nova forma de cuidar
+        da sua pele, do rosto ao corpo.
+      </p>
+
+      <figure class="philosophy-v3__image">
+        <img
+          src="/modelos/modelo-1.jpg"
+          alt="Retrato editorial em tons quentes - pele saudável e expressão serena"
+          loading="lazy"
+          style="object-position: 50% 20%"
+        />
+      </figure>
+    </div>
+
+    <aside class="philosophy-v3__signature">
+      <span class="philosophy-v3__signature-name">Equipe Plena Derma</span>
+      <span class="philosophy-v3__signature-role">Cuidado guiado por avaliação</span>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .philosophy-v3 {
+    background-color: var(--brand-light);
+    color: var(--brand-dark);
+    padding-block: clamp(6rem, 14vh, 12rem) clamp(5rem, 10vh, 8rem);
+    position: relative;
+  }
+
+  .philosophy-v3__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+  @media (min-width: 900px) {
+    .philosophy-v3__inner {
+      grid-template-columns: 3fr 5fr 3fr;
+      gap: var(--space-8);
+    }
+  }
+
+  /* Number column */
+  .philosophy-v3__numcol {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-5);
+  }
+  @media (min-width: 900px) {
+    .philosophy-v3__numcol { flex-direction: column; justify-content: space-between; min-height: 18rem; }
+  }
+  .philosophy-v3__label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-accent);
+  }
+  @media (min-width: 900px) {
+    .philosophy-v3__label {
+      writing-mode: vertical-rl;
+      transform: rotate(180deg);
+      align-self: flex-start;
+      margin-block-start: 2rem;
+    }
+  }
+
+  /* Body */
+  .philosophy-v3__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-block: var(--space-4);
+  }
+  @media (min-width: 900px) {
+    .philosophy-v3__body { padding-inline-start: var(--space-7); }
+  }
+
+  .philosophy-v3__heading {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1.1;
+    letter-spacing: var(--track-h2);
+    color: var(--brand-dark);
+  }
+
+  .philosophy-v3__p {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-base);
+    line-height: var(--leading-body);
+    color: var(--text-muted);
+    max-width: var(--measure);
+  }
+
+  .philosophy-v3__image {
+    margin-block-start: var(--space-6);
+    width: min(100%, 22rem);
+  }
+  .philosophy-v3__image img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    filter: grayscale(1);
+    opacity: 0.85;
+    transition: filter var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
+  }
+  .philosophy-v3__image img:hover { filter: grayscale(0); opacity: 1; }
+
+  /* Signature column */
+  .philosophy-v3__signature {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    text-align: end;
+    gap: var(--space-2);
+  }
+  @media (min-width: 900px) {
+    .philosophy-v3__signature { display: flex; }
+  }
+  .philosophy-v3__signature-name {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1.5rem;
+    color: var(--brand-primary);
+  }
+  .philosophy-v3__signature-role {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--text-soft);
+  }
+</style>

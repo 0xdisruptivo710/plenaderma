@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import WhatsappFloat from '../components/WhatsappFloat.astro';
+
+import HeroV3 from '../sections/home/HeroV3.astro';
+import Marquee from '../sections/home/Marquee.astro';
+import EssenciaSplit from '../sections/home/EssenciaSplit.astro';
+import TreatmentIndex from '../sections/home/TreatmentIndex.astro';
+import UltraformerFeature from '../sections/home/UltraformerFeature.astro';
+import ClinicGallery from '../sections/home/ClinicGallery.astro';
+import CtaCine from '../sections/CtaCine.astro';
+import { whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+
+const title = 'Plena Derma - Clínica de Estética Facial e Corporal na Asa Norte, Brasília';
+const description =
+  'Protocolos personalizados de estética facial e corporal na Asa Norte: Ultraformer, toxina botulínica, preenchimento, bioestimuladores, lasers e depilação a laser. Agende sua avaliação.';
+---
+
+<BaseLayout title={title} description={description}>
+  <SiteHeader slot="header" />
+
+  <HeroV3 />
+  <Marquee />
+  <EssenciaSplit />
+  <TreatmentIndex />
+  <UltraformerFeature />
+  <ClinicGallery />
+  <CtaCine
+    headline="Sua avaliação é <em>o começo de tudo.</em>"
+    lead="Conte o que te incomoda e a equipe desenha o protocolo certo pra você. O atendimento começa no WhatsApp."
+    ctaHref={whatsappUrl(WA_MESSAGES.general)}
+  />
+
+  <SiteFooter slot="footer" />
+  <WhatsappFloat slot="floats" />
+</BaseLayout>

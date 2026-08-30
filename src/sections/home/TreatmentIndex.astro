@@ -1,0 +1,273 @@
+---
+/**
+ * TreatmentIndex v1.0 - índice tipográfico editorial das 5 frentes de cuidado.
+ * Linhas em serif gigante com preview de imagem que troca no hover.
+ * Cada linha leva à subpágina dedicada.
+ */
+import { TREATMENTS } from '../../lib/treatments';
+---
+
+<section id="protocolos" class="tindex">
+  <div class="container container--wide tindex__inner">
+    <header class="tindex__head reveal">
+      <div>
+        <p class="tindex__eyebrow">02 - Nossos Cuidados</p>
+        <h2 class="tindex__title">Cinco caminhos,<br /><em>um método.</em></h2>
+      </div>
+      <p class="tindex__lead">
+        Avaliação primeiro, protocolo personalizado depois.
+        Escolha por onde começar.
+      </p>
+    </header>
+
+    <div class="tindex__grid">
+      <div class="tindex__preview" aria-hidden="true">
+        {TREATMENTS.map((t, i) => (
+          <img
+            src={t.indexImage}
+            alt=""
+            loading="lazy"
+            class="tindex__preview-img"
+            data-preview={t.slug}
+            data-active={i === 0 ? 'true' : 'false'}
+          />
+        ))}
+      </div>
+
+      <ol class="tindex__list">
+        {TREATMENTS.map((t, i) => (
+          <li class="tindex__row reveal" style={`--reveal-delay: ${i}`}>
+            <a href={`/${t.slug}/`} class="tindex__link" data-slug={t.slug}>
+              <span class="tindex__num">0{i + 1}</span>
+              <span class="tindex__name-wrap">
+                <span class="tindex__name">{t.name}</span>
+                <span class="tindex__desc">{t.indexDesc}</span>
+              </span>
+              <span class="tindex__meta">
+                {t.tag === 'Novo'
+                  ? <span class="tindex__badge">Novo</span>
+                  : <span class="tindex__tag">{t.tag}</span>}
+                <span class="tindex__arrow" aria-hidden="true">→</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tindex {
+    background-color: var(--brand-dark);
+    color: var(--brand-light);
+    padding-block: clamp(6rem, 14vh, 12rem);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tindex__head {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-block-end: clamp(3rem, 8vh, 6rem);
+  }
+  @media (min-width: 768px) {
+    .tindex__head { flex-direction: row; align-items: flex-end; }
+  }
+
+  .tindex__eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-gold);
+    margin-block-end: var(--space-3);
+  }
+
+  .tindex__title {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    letter-spacing: var(--track-tight);
+    line-height: 1;
+  }
+  .tindex__title em { font-style: italic; color: var(--brand-gold); }
+
+  .tindex__lead {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: rgba(250, 248, 245, 0.7);
+    max-width: 20rem;
+    line-height: var(--leading-body);
+  }
+  @media (min-width: 768px) {
+    .tindex__lead { text-align: end; margin-block-end: 0.75rem; }
+  }
+
+  /* Grid: preview + lista */
+  .tindex__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 1000px) {
+    .tindex__grid {
+      grid-template-columns: 4fr 8fr;
+      gap: var(--space-9);
+      align-items: start;
+    }
+  }
+
+  .tindex__preview {
+    display: none;
+    position: sticky;
+    top: 12vh;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    box-shadow: var(--shadow-deep);
+  }
+  @media (min-width: 1000px) {
+    .tindex__preview { display: block; }
+  }
+  .tindex__preview-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.06);
+    transition: opacity var(--dur-slow) var(--ease-out),
+                transform 1600ms var(--ease-out);
+    filter: contrast(1.05) saturate(0.92) brightness(0.95);
+  }
+  .tindex__preview-img[data-active="true"] {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Lista */
+  .tindex__list {
+    display: flex;
+    flex-direction: column;
+    border-block-start: 1px solid rgba(250, 248, 245, 0.15);
+  }
+
+  .tindex__row { border-block-end: 1px solid rgba(250, 248, 245, 0.15); }
+
+  .tindex__link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: var(--space-5);
+    padding-block: clamp(1.5rem, 3.5vh, 2.5rem);
+    color: inherit;
+    position: relative;
+    transition: padding-inline-start var(--dur-base) var(--ease-out);
+  }
+  .tindex__link::before {
+    content: "";
+    position: absolute;
+    inset-inline-start: calc(var(--gutter-x) * -1);
+    inset-block: 0;
+    width: 0;
+    background-color: rgba(197, 168, 128, 0.07);
+    transition: width var(--dur-base) var(--ease-out);
+    pointer-events: none;
+  }
+  .tindex__link:hover { padding-inline-start: var(--space-5); }
+  .tindex__link:hover::before { width: calc(100% + var(--gutter-x) * 2); }
+
+  .tindex__num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: var(--track-mono);
+    color: var(--brand-gold);
+  }
+
+  .tindex__name-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    min-width: 0;
+  }
+
+  .tindex__name {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-regular);
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    letter-spacing: var(--track-h2);
+    line-height: 1.05;
+    transition: color var(--dur-base) var(--ease-out),
+                font-style 0s;
+  }
+  .tindex__link:hover .tindex__name {
+    color: var(--brand-gold);
+    font-style: italic;
+  }
+
+  .tindex__desc {
+    font-family: var(--font-sans);
+    font-weight: var(--weight-light);
+    font-size: var(--text-sm);
+    color: rgba(250, 248, 245, 0.55);
+    line-height: 1.5;
+    max-width: 34rem;
+  }
+
+  .tindex__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
+
+  .tindex__tag {
+    display: none;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    color: rgba(250, 248, 245, 0.5);
+  }
+  @media (min-width: 640px) {
+    .tindex__tag { display: inline; }
+  }
+
+  .tindex__badge {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: var(--track-mono);
+    background-color: var(--brand-gold);
+    color: var(--brand-dark);
+    padding: 0.35rem 0.7rem;
+    border-radius: var(--radius-xs);
+  }
+
+  .tindex__arrow {
+    font-size: 1.25rem;
+    color: rgba(250, 248, 245, 0.4);
+    transition: color var(--dur-fast) var(--ease-out),
+                transform var(--dur-base) var(--ease-out);
+  }
+  .tindex__link:hover .tindex__arrow {
+    color: var(--brand-gold);
+    transform: translateX(6px);
+  }
+</style>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('.tindex__link');
+  const previews = document.querySelectorAll<HTMLImageElement>('.tindex__preview-img');
+  links.forEach((link) => {
+    link.addEventListener('mouseenter', () => {
+      const slug = link.dataset.slug;
+      previews.forEach((img) => {
+        img.dataset.active = img.dataset.preview === slug ? 'true' : 'false';
+      });
+    });
+  });
+</script>
