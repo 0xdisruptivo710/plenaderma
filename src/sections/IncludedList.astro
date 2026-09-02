@@ -55,7 +55,11 @@ const { eyebrow = 'O que inclui', headline, items, note } = Astro.props;
     }
   }
 
-  .ilist__head { position: sticky; top: 12vh; }
+  /* Sticky só no layout de duas colunas; em coluna única o título
+     rolaria por cima das linhas da lista. */
+  @media (min-width: 900px) {
+    .ilist__head { position: sticky; top: 12vh; }
+  }
 
   .ilist__eyebrow {
     font-family: var(--font-mono);

@@ -113,6 +113,8 @@ const navItems = [
     justify-content: space-between;
     gap: var(--space-6);
     padding-block: var(--space-5);
+    position: relative;
+    z-index: calc(var(--z-nav) + 1); /* toggle acima do overlay do menu mobile (que usa --z-nav) */
   }
 
   .site-header[data-state="scrolled"] .site-header__inner {
@@ -219,6 +221,10 @@ const navItems = [
   .site-header__menu-toggle[aria-expanded="true"] span:nth-child(2) {
     transform: translateY(-3px) rotate(-45deg);
   }
+  /* Com o menu aberto (fundo chocolate), o X precisa ser claro em qualquer tone */
+  .site-header__menu-toggle[aria-expanded="true"] {
+    color: var(--brand-light);
+  }
 
   /* Mobile fullscreen menu */
   .site-header__mobile {
@@ -241,15 +247,20 @@ const navItems = [
   .site-header__mobile nav {
     display: flex;
     flex-direction: column;
-    gap: var(--space-5);
+    gap: clamp(0.6rem, 1.6vh, 1.25rem);
     text-align: center;
+    max-height: 100dvh;
+    overflow-y: auto;
+    padding-block: clamp(4.5rem, 10vh, 6rem) var(--space-7);
+    width: 100%;
   }
   .site-header__mobile-link {
     font-family: var(--font-serif);
-    font-size: clamp(2.5rem, 8vw, 4rem);
+    font-size: clamp(1.5rem, 4.2vh, 2.25rem);
     font-weight: var(--weight-regular);
     color: var(--brand-light);
     letter-spacing: var(--track-tight);
+    line-height: 1.25;
   }
   .site-header__mobile-link--accent { color: var(--brand-gold); font-style: italic; }
 </style>
