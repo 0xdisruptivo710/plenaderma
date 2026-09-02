@@ -5,6 +5,7 @@
  * publicidade de saúde) assim que confirmados com a clínica.
  */
 import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
+import { TREATMENTS } from '../lib/treatments';
 ---
 
 <footer class="site-footer">
@@ -25,11 +26,9 @@ import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
       <section>
         <h4 class="site-footer__heading">Cuidados</h4>
         <ul>
-          <li><a href="/harmonizacao-facial/">Harmonização Facial</a></li>
-          <li><a href="/ultraformer/">Ultraformer</a></li>
-          <li><a href="/lasers-e-pele/">Lasers e Pele</a></li>
-          <li><a href="/corporal/">Estética Corporal</a></li>
-          <li><a href="/depilacao-a-laser/">Depilação a Laser</a></li>
+          {TREATMENTS.map((t) => (
+            <li><a href={`/${t.slug}/`}>{t.name}</a></li>
+          ))}
         </ul>
       </section>
 
@@ -65,15 +64,13 @@ import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
     </div>
 
     <div class="site-footer__wordmark" aria-hidden="true">
-      <span class="site-footer__wordmark-italic">Plena</span>
-      <span>Derma</span>
+      <img src="/brand/logo-full-dark.png" alt="" width="1141" height="267" loading="lazy" />
     </div>
 
     <div class="site-footer__legal">
       <span class="site-footer__brand">
-        <span class="site-footer__brand-plena">Plena</span>
-        <span class="site-footer__brand-derma">Derma</span>
-        <span class="site-footer__brand-sig">· {CLINIC.signature}</span>
+        <img src="/brand/simbolo.png" alt="" aria-hidden="true" class="site-footer__brand-simbolo" loading="lazy" />
+        <span class="site-footer__brand-sig">{CLINIC.name} · {CLINIC.signature}</span>
       </span>
       <div class="site-footer__legal-links">
         <a href={CLINIC.social.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -135,28 +132,15 @@ import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
 
   .site-footer__wordmark {
     text-align: center;
-    overflow: hidden;
     border-block-end: 1px solid var(--border-faint);
     padding-block-end: var(--space-7);
     display: flex;
-    flex-wrap: nowrap;
     justify-content: center;
-    align-items: baseline;
-    gap: 2vw;
-    line-height: 0.85;
   }
-  .site-footer__wordmark span {
-    font-family: var(--font-serif);
-    font-weight: var(--weight-regular);
-    font-size: clamp(3rem, 12vw, 10rem);
-    line-height: 0.85;
-    letter-spacing: -0.03em;
-    color: var(--brand-dark);
-    white-space: nowrap;
-  }
-  .site-footer__wordmark-italic {
-    font-style: italic;
-    color: var(--brand-primary) !important;
+  .site-footer__wordmark img {
+    width: min(90%, 640px);
+    height: auto;
+    display: block;
   }
 
   .site-footer__legal {
@@ -179,21 +163,13 @@ import { CLINIC, whatsappUrl, WA_MESSAGES } from '../lib/clinic';
 
   .site-footer__brand {
     display: inline-flex;
-    align-items: baseline;
-    gap: 0.35rem;
+    align-items: center;
+    gap: 0.6rem;
   }
-  .site-footer__brand-plena {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 15px;
-    color: var(--brand-dark);
-  }
-  .site-footer__brand-derma {
-    font-family: var(--font-sans);
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.24em;
-    color: var(--brand-accent);
+  .site-footer__brand-simbolo {
+    height: 22px;
+    width: auto;
+    display: block;
   }
   .site-footer__brand-sig {
     font-size: 11px;

@@ -1,5 +1,7 @@
 /**
  * Fonte única das 5 frentes de cuidado da Plena Derma.
+ * Estrutura definida pela cliente: Harmonização Facial, Harmonização
+ * Corporal, Tecnologias, Tratamentos de Pele e Depilação a Laser.
  * Alimenta o índice da Home, o footer e as subpáginas dedicadas.
  * Regras de copy: sem preço, sem promessa de resultado, sem travessão.
  */
@@ -19,7 +21,7 @@ export interface Treatment {
   name: string;
   navLabel: string;
   tag: string;
-  waKey: 'injetaveis' | 'ultraformer' | 'lasers' | 'corporal' | 'depilacao';
+  waKey: 'injetaveis' | 'corporal' | 'tecnologias' | 'pele' | 'depilacao';
   indexDesc: string;
   indexImage: string;
   heroTitle: string;
@@ -38,8 +40,8 @@ export const TREATMENTS: Treatment[] = [
   {
     slug: 'harmonizacao-facial',
     name: 'Harmonização Facial',
-    navLabel: 'Harmonização',
-    tag: 'Injetáveis',
+    navLabel: 'Harmonização Facial',
+    tag: 'Rosto',
     waKey: 'injetaveis',
     indexDesc: 'Toxina, preenchimento, bioestimuladores e fios, com a sua expressão preservada.',
     indexImage: '/modelos/modelo-injetaveis.jpg',
@@ -82,96 +84,9 @@ export const TREATMENTS: Treatment[] = [
     ],
   },
   {
-    slug: 'ultraformer',
-    name: 'Ultraformer',
-    navLabel: 'Ultraformer',
-    tag: 'Tecnologia',
-    waKey: 'ultraformer',
-    indexDesc: 'Ultrassom micro e macrofocado para firmeza e contorno. Tecnologia própria da clínica.',
-    indexImage: '/modelos/feature-ultraformer.jpg',
-    heroTitle: 'Firmeza que vem <em>de dentro.</em>',
-    heroLead:
-      'Ultrassom micro e macrofocado que estimula o colágeno nas camadas profundas da pele. O equipamento é da Plena Derma, e cada protocolo é conduzido por avaliação profissional.',
-    heroVideo: '/video/ultraformer.mp4',
-    heroPoster: '/video/ultraformer-poster.jpg',
-    definitionEyebrow: 'O que é',
-    definitionTitle: 'Tecnologia própria, protocolo seu.',
-    definitionBody: [
-      'O Ultraformer trabalha onde a flacidez começa: nas camadas profundas da pele. O ultrassom microfocado estimula a produção de colágeno e promove efeito lifting, firmeza e melhora de textura, sem cortes.',
-      'Por ser um equipamento residente da clínica, a agenda é nossa: o protocolo é montado por região e por objetivo na avaliação, e a evolução acontece de forma gradual ao longo de cerca de três meses, acompanhando o tempo do seu colágeno.',
-    ],
-    included: [
-      { name: 'Full face', desc: 'Protocolo completo de firmeza e contorno facial' },
-      { name: 'Full face + papada', desc: 'Rosto inteiro com atenção especial ao contorno inferior' },
-      { name: 'Papada', desc: 'Definição da região submentoniana' },
-      { name: 'Contorno facial', desc: 'Linha da mandíbula e terço inferior' },
-      { name: 'Pálpebras', desc: 'Região periocular, com técnica delicada' },
-      { name: 'Corporal', desc: 'Abdômen, flancos e braços' },
-    ],
-    faq: [
-      {
-        q: 'Quando a evolução aparece?',
-        a: 'O estímulo de colágeno é gradual: a pele responde ao longo de cerca de três meses após o protocolo. Na avaliação a equipe alinha as expectativas para a sua região e objetivo.',
-      },
-      {
-        q: 'Preciso parar minha rotina?',
-        a: 'Na maioria dos casos a rotina segue normalmente no mesmo dia. Você recebe orientações individuais da equipe após a sessão.',
-      },
-      {
-        q: 'O equipamento é da clínica mesmo?',
-        a: 'Sim. O Ultraformer mora na Plena Derma, o que garante agenda própria, protocolos completos e acompanhamento de perto pela nossa equipe.',
-      },
-      {
-        q: 'Serve pra corpo também?',
-        a: 'Sim. Além do rosto, papada e pálpebras, há protocolos corporais para abdômen, flancos e braços, sempre definidos na avaliação.',
-      },
-    ],
-  },
-  {
-    slug: 'lasers-e-pele',
-    name: 'Lasers & Pele',
-    navLabel: 'Lasers e Pele',
-    tag: 'Pele',
-    waKey: 'lasers',
-    indexDesc: 'CO2, Lavieen, microagulhamento e peelings. Textura, viço e uniformidade.',
-    indexImage: '/fotos/microagulhamento.jpg',
-    heroTitle: 'Pele com <em>luz própria.</em>',
-    heroLead:
-      'Laser de CO2 fracionado, Lavieen, microagulhamento, peelings e limpeza de pele. Da renovação intensa ao cuidado de rotina, tudo que a sua pele pode receber aqui na Plena Derma.',
-    heroVideo: '/video/lasers.mp4',
-    heroPoster: '/video/lasers-poster.jpg',
-    definitionEyebrow: 'O que é',
-    definitionTitle: 'Cada pele pede um caminho.',
-    definitionBody: [
-      'Manchas, textura irregular, poros, viço apagado, marcas do tempo: cada queixa tem uma tecnologia certa. O CO2 fracionado renova em profundidade; o Lavieen trata manchas e devolve luminosidade; microagulhamento, peelings e limpeza mantêm a pele saudável no dia a dia.',
-      'Na avaliação, a equipe analisa a sua pele e monta o protocolo em sessões, respeitando a estação do ano, o seu fototipo e a sua rotina.',
-    ],
-    included: [
-      { name: 'Laser de CO2 fracionado', desc: 'Renovação intensa de textura e qualidade de pele' },
-      { name: 'Lavieen (BB Laser)', desc: 'Manchas, viço e uniformidade em protocolo de sessões' },
-      { name: 'Microagulhamento', desc: 'Estímulo de renovação, inclusive com ativos e exossomos' },
-      { name: 'Peelings', desc: 'Renovação química em diferentes intensidades' },
-      { name: 'Limpeza de pele', desc: 'Cuidado de rotina, base de qualquer protocolo' },
-    ],
-    faq: [
-      {
-        q: 'Qual tratamento é o certo pra mim?',
-        a: 'É exatamente o que a avaliação responde. A equipe analisa a sua pele, entende a sua queixa e indica a tecnologia e o número de sessões adequados ao seu caso.',
-      },
-      {
-        q: 'Posso fazer laser no verão?',
-        a: 'Alguns lasers pedem um momento do ano mais adequado e cuidados redobrados com o sol. Na avaliação a equipe orienta o melhor calendário pra você.',
-      },
-      {
-        q: 'Em quantas sessões vejo evolução?',
-        a: 'Depende da tecnologia e da sua pele. Os protocolos são montados em sessões, com acompanhamento da equipe a cada etapa.',
-      },
-    ],
-  },
-  {
-    slug: 'corporal',
-    name: 'Estética Corporal',
-    navLabel: 'Corporal',
+    slug: 'harmonizacao-corporal',
+    name: 'Harmonização Corporal',
+    navLabel: 'Harmonização Corporal',
     tag: 'Corpo',
     waKey: 'corporal',
     indexDesc: 'Harmonização glútea, lipo enzimática e protocolos de contorno e firmeza.',
@@ -179,8 +94,7 @@ export const TREATMENTS: Treatment[] = [
     heroTitle: 'Seu corpo também <em>merece cuidado.</em>',
     heroLead:
       'Harmonização glútea, lipo enzimática, secagem de vasinhos e protocolos para celulite, estrias e flacidez. O mesmo olhar personalizado do rosto, aplicado ao corpo inteiro.',
-    heroVideo: '/video/corporal.mp4',
-    heroPoster: '/video/corporal-poster.jpg',
+    heroImage: '/fotos/corporal-real.jpg',
     definitionEyebrow: 'O que é',
     definitionTitle: 'Contorno com naturalidade.',
     definitionBody: [
@@ -210,17 +124,103 @@ export const TREATMENTS: Treatment[] = [
     ],
   },
   {
+    slug: 'tecnologias',
+    name: 'Tecnologias',
+    navLabel: 'Tecnologias',
+    tag: 'Alta Tecnologia',
+    waKey: 'tecnologias',
+    indexDesc: 'Ultraformer, Morpheus, Fotona, Laser de CO2 e Lavieen, no rosto e no corpo.',
+    indexImage: '/modelos/feature-ultraformer.jpg',
+    heroTitle: 'Tecnologias que <em>moram aqui.</em>',
+    heroLead:
+      'Ultraformer, Morpheus, Fotona, Laser de CO2 e Lavieen: um arsenal de tecnologias residentes na clínica, para firmeza, contorno e renovação, sempre conduzido por avaliação profissional.',
+    heroVideo: '/video/tecnologias.mp4',
+    heroPoster: '/video/tecnologias-poster.jpg',
+    definitionEyebrow: 'O que é',
+    definitionTitle: 'O equipamento certo para cada objetivo.',
+    definitionBody: [
+      'Cada tecnologia da casa tem uma especialidade: o Ultraformer trabalha firmeza e contorno com ultrassom micro e macrofocado; o Morpheus combina microagulhamento e radiofrequência; o Fotona e o Laser de CO2 atuam na renovação profunda da pele; o Lavieen trata manchas e devolve luminosidade.',
+      'Na avaliação, a equipe define qual tecnologia (ou qual combinação) faz sentido pro seu caso, monta o protocolo por região e acompanha a sua evolução, que acontece de forma gradual, no tempo do seu colágeno.',
+    ],
+    included: [
+      { name: 'Ultraformer', desc: 'Ultrassom micro e macrofocado: firmeza e contorno de rosto, papada e corpo' },
+      { name: 'Morpheus', desc: 'Microagulhamento com radiofrequência para textura e firmeza' },
+      { name: 'Fotona', desc: 'Laser de alta performance para renovação e qualidade de pele' },
+      { name: 'Laser de CO2 fracionado', desc: 'Renovação intensa de textura e marcas do tempo' },
+      { name: 'Lavieen (BB Laser)', desc: 'Manchas, viço e uniformidade em protocolo de sessões' },
+    ],
+    faq: [
+      {
+        q: 'Qual tecnologia é a certa pra mim?',
+        a: 'É exatamente o que a avaliação responde. A equipe analisa a sua pele e o seu objetivo e indica a tecnologia (ou a combinação) adequada, com plano de sessões por região.',
+      },
+      {
+        q: 'Quando a evolução aparece?',
+        a: 'Tecnologias que estimulam colágeno respondem de forma gradual, ao longo de semanas a alguns meses. Na avaliação a equipe alinha as expectativas para o seu caso.',
+      },
+      {
+        q: 'Os equipamentos são da clínica?',
+        a: 'Sim. As tecnologias moram na Plena Derma, o que garante agenda própria, protocolos completos e acompanhamento de perto pela nossa equipe.',
+      },
+      {
+        q: 'Preciso parar minha rotina?',
+        a: 'Depende da tecnologia e da intensidade do protocolo. Muitos tratamentos permitem rotina normal no mesmo dia; você recebe orientações individuais após cada sessão.',
+      },
+    ],
+  },
+  {
+    slug: 'tratamentos-de-pele',
+    name: 'Tratamentos de Pele',
+    navLabel: 'Tratamentos de Pele',
+    tag: 'Pele',
+    waKey: 'pele',
+    indexDesc: 'Limpeza, peelings, microagulhamento e skinbooster. Textura, viço e uniformidade.',
+    indexImage: '/fotos/microagulhamento.jpg',
+    heroTitle: 'Pele com <em>luz própria.</em>',
+    heroLead:
+      'Limpeza de pele, peelings, microagulhamento e skinbooster. Da renovação ao cuidado de rotina, tudo que a sua pele pode receber aqui na Plena Derma.',
+    heroVideo: '/video/pele.mp4',
+    heroPoster: '/video/pele-poster.jpg',
+    definitionEyebrow: 'O que é',
+    definitionTitle: 'Cada pele pede um caminho.',
+    definitionBody: [
+      'Manchas, textura irregular, poros, viço apagado: cada queixa tem um cuidado certo. Peelings e limpeza mantêm a pele saudável no dia a dia; microagulhamento e skinbooster estimulam renovação e hidratação profunda.',
+      'Na avaliação, a equipe analisa a sua pele e monta o protocolo em sessões, respeitando a estação do ano, o seu fototipo e a sua rotina. E quando o caso pede mais intensidade, as tecnologias da casa entram no plano.',
+    ],
+    included: [
+      { name: 'Limpeza de pele', desc: 'Cuidado de rotina, base de qualquer protocolo' },
+      { name: 'Peelings', desc: 'Renovação química em diferentes intensidades' },
+      { name: 'Microagulhamento', desc: 'Estímulo de renovação, inclusive com ativos e exossomos' },
+      { name: 'Skinbooster', desc: 'Hidratação profunda injetável para viço e qualidade de pele' },
+      { name: 'Protocolos de manchas e viço', desc: 'Planos em sessões combinando ativos e tecnologias' },
+    ],
+    faq: [
+      {
+        q: 'Qual tratamento é o certo pra mim?',
+        a: 'É exatamente o que a avaliação responde. A equipe analisa a sua pele, entende a sua queixa e indica o cuidado e o número de sessões adequados ao seu caso.',
+      },
+      {
+        q: 'Posso tratar manchas no verão?',
+        a: 'Alguns protocolos pedem um momento do ano mais adequado e cuidados redobrados com o sol. Na avaliação a equipe orienta o melhor calendário pra você.',
+      },
+      {
+        q: 'Em quantas sessões vejo evolução?',
+        a: 'Depende do cuidado e da sua pele. Os protocolos são montados em sessões, com acompanhamento da equipe a cada etapa.',
+      },
+    ],
+  },
+  {
     slug: 'depilacao-a-laser',
     name: 'Depilação a Laser',
     navLabel: 'Depilação',
     tag: 'Novo',
     waKey: 'depilacao',
     indexDesc: 'Soprano Ice Platinum: sessões confortáveis para diferentes fototipos.',
-    indexImage: '/modelos/modelo-depilacao.jpg',
+    indexImage: '/fotos/depilacao-corpo.jpg',
     heroTitle: 'Liberdade, <em>sessão a sessão.</em>',
     heroLead:
       'Depilação a laser com Soprano Ice Platinum, agora na Plena Derma. Sessões confortáveis, tecnologia indicada para diferentes fototipos e avaliação profissional antes de começar.',
-    heroImage: '/modelos/modelo-depilacao.jpg',
+    heroImage: '/fotos/depilacao-corpo.jpg',
     definitionEyebrow: 'O que é',
     definitionTitle: 'A tecnologia que faltava na sua rotina.',
     definitionBody: [

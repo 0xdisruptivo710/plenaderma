@@ -23,8 +23,8 @@ const navItems = [
 <header class="site-header" data-state="top" data-tone={tone}>
   <div class="site-header__inner container container--wide">
     <a href="/" class="site-header__brand" aria-label="Plena Derma - início">
-      <span class="site-header__wm-plena">Plena</span>
-      <span class="site-header__wm-derma">Derma</span>
+      <img src="/brand/logo-cream.png" alt="Plena Derma" class="site-header__logo site-header__logo--cream" width="1184" height="183" />
+      <img src="/brand/logo-dark.png" alt="" aria-hidden="true" class="site-header__logo site-header__logo--dark" width="1184" height="183" />
     </a>
 
     <nav class="site-header__nav" aria-label="Navegação principal">
@@ -100,7 +100,7 @@ const navItems = [
   }
 
   .site-header[data-state="scrolled"] {
-    background-color: rgba(250, 248, 245, 0.92);
+    background-color: rgba(240, 230, 216, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     color: var(--brand-dark);
@@ -121,31 +121,23 @@ const navItems = [
     padding-block: var(--space-4);
   }
 
-  /* Brand wordmark */
+  /* Brand: logo oficial (Logo 2 do manual, sem assinatura) */
   .site-header__brand {
     display: inline-flex;
-    align-items: baseline;
-    gap: var(--space-2);
-    line-height: 1;
-    color: currentColor;
+    align-items: center;
+    line-height: 0;
   }
-  .site-header__wm-plena {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-weight: var(--weight-medium);
-    font-size: 1.75rem;
-    letter-spacing: -0.02em;
-    line-height: 1;
+  .site-header__logo {
+    height: 26px;
+    width: auto;
+    display: block;
   }
-  .site-header__wm-derma {
-    font-family: var(--font-sans);
-    font-weight: var(--weight-regular);
-    font-size: 0.72rem;
-    text-transform: uppercase;
-    letter-spacing: 0.28em;
-    line-height: 1;
-    color: var(--brand-gold);
-  }
+  /* Variante por estado: creme sobre hero escuro, escura sobre claro/scrolled */
+  .site-header__logo--dark { display: none; }
+  .site-header[data-tone="light"][data-state="top"] .site-header__logo--cream,
+  .site-header[data-state="scrolled"] .site-header__logo--cream { display: none; }
+  .site-header[data-tone="light"][data-state="top"] .site-header__logo--dark,
+  .site-header[data-state="scrolled"] .site-header__logo--dark { display: block; }
 
   /* Nav (desktop) */
   .site-header__nav {

@@ -1,11 +1,20 @@
 ---
 /**
- * UltraformerFeature v1.0 - Plena Derma. Tecnologia de assinatura da casa:
- * o Ultraformer é próprio (argumento de autoridade), não alugado.
+ * TecnologiasFeature (arquivo mantém o nome histórico UltraformerFeature).
+ * O arsenal de tecnologias residentes da casa: Ultraformer, Morpheus,
+ * Fotona, Laser de CO2 e Lavieen.
  */
 import { whatsappUrl, WA_MESSAGES } from '../../lib/clinic';
 
-const wa = whatsappUrl(WA_MESSAGES.ultraformer);
+const wa = whatsappUrl(WA_MESSAGES.tecnologias);
+
+const techs = [
+  { name: 'Ultraformer', desc: 'firmeza e contorno' },
+  { name: 'Morpheus', desc: 'radiofrequência com microagulhamento' },
+  { name: 'Fotona', desc: 'renovação de alta performance' },
+  { name: 'Laser de CO2', desc: 'renovação intensa' },
+  { name: 'Lavieen', desc: 'manchas e viço' },
+] as const;
 ---
 
 <section id="tecnologia" class="ultra-feature">
@@ -13,8 +22,8 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
     <div class="ultra-feature__media reveal">
       <figure class="ultra-feature__figure">
         <video
-          src="/video/ultraformer.mp4"
-          poster="/video/ultraformer-poster.jpg"
+          src="/video/tecnologias.mp4"
+          poster="/video/tecnologias-poster.jpg"
           autoplay
           muted
           loop
@@ -30,24 +39,29 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
 
     <div class="ultra-feature__body reveal" style="--reveal-delay: 2">
       <span class="ultra-feature__outline outline-num outline-num--gold" aria-hidden="true">03</span>
-      <p class="eyebrow eyebrow--accent">03 - Tecnologia de Assinatura</p>
+      <p class="eyebrow eyebrow--accent">03 - Tecnologias da Casa</p>
       <h2 class="ultra-feature__title">
-        Ultraformer,<br />
-        <em>tecnologia própria.</em>
+        Um arsenal que<br />
+        <em>mora aqui.</em>
       </h2>
       <p class="ultra-feature__p">
-        O Ultraformer mora aqui. O equipamento é da Plena Derma, e a agenda
-        dele também: ultrassom micro e macrofocado para firmeza e contorno
-        de rosto, papada e corpo, sempre conduzido por avaliação profissional.
+        As tecnologias da Plena Derma são residentes: equipamento próprio,
+        agenda própria e protocolos completos, do rosto ao corpo, sempre
+        conduzidos por avaliação profissional.
       </p>
-      <p class="ultra-feature__p">
-        E como todo bom trabalho de colágeno, ele respeita o seu tempo:
-        a evolução acontece de forma gradual ao longo de cerca de três meses,
-        com naturalidade que acompanha a sua expressão.
-      </p>
+
+      <ul class="ultra-feature__techs">
+        {techs.map((t) => (
+          <li class="ultra-feature__tech">
+            <span class="ultra-feature__tech-name">{t.name}</span>
+            <span class="ultra-feature__tech-desc">{t.desc}</span>
+          </li>
+        ))}
+      </ul>
+
       <div class="ultra-feature__actions">
-        <a href="/ultraformer/" class="link-edit ultra-feature__cta">
-          Conhecer o Ultraformer <span aria-hidden="true">→</span>
+        <a href="/tecnologias/" class="link-edit ultra-feature__cta">
+          Conhecer as tecnologias <span aria-hidden="true">→</span>
         </a>
         <a href={wa} target="_blank" rel="noopener noreferrer" class="link-edit ultra-feature__cta">
           Agendar avaliação <span aria-hidden="true">→</span>
@@ -103,7 +117,7 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
   @media (prefers-reduced-motion: reduce) {
     .ultra-feature__figure video { display: none; }
     .ultra-feature__figure {
-      background-image: url('/video/ultraformer-poster.jpg');
+      background-image: url('/video/tecnologias-poster.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -121,10 +135,9 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
     .ultra-feature__caption { inset-inline-end: var(--space-6); }
   }
   .ultra-feature__caption p {
-    font-family: var(--font-serif);
-    font-style: italic;
-    font-size: 1.5rem;
-    line-height: 1.2;
+    font-family: var(--font-script);
+    font-size: 1.6rem;
+    line-height: 1.15;
     color: var(--brand-dark);
     text-align: center;
   }
@@ -155,7 +168,6 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
     margin-block: var(--space-5) var(--space-6);
   }
   .ultra-feature__title em {
-    font-style: italic;
     color: var(--brand-accent);
   }
 
@@ -166,7 +178,38 @@ const wa = whatsappUrl(WA_MESSAGES.ultraformer);
     color: var(--text-muted);
     line-height: var(--leading-body);
     max-width: 34rem;
-    margin-block-end: var(--space-5);
+    margin-block-end: var(--space-6);
+  }
+
+  /* Lista de tecnologias */
+  .ultra-feature__techs {
+    display: flex;
+    flex-direction: column;
+    border-block-start: 1px solid var(--border-faint);
+    margin-block-end: var(--space-6);
+    max-width: 34rem;
+  }
+  .ultra-feature__tech {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--space-5);
+    padding-block: var(--space-3);
+    border-block-end: 1px solid var(--border-faint);
+  }
+  .ultra-feature__tech-name {
+    font-family: var(--font-serif);
+    font-weight: var(--weight-medium);
+    font-size: clamp(1.1rem, 1.6vw, 1.35rem);
+    white-space: nowrap;
+  }
+  .ultra-feature__tech-desc {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-soft);
+    text-align: end;
   }
 
   .ultra-feature__actions {

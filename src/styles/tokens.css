@@ -1,48 +1,80 @@
 /*
- * Plena Derma - tokens.css · v1.0
- * Direção: warm editorial luxury + acolhimento. Creme, marrom chocolate e dourado.
- * Fonte da identidade: feed @plenaderma (creme/marrom, serif elegante, botânica em linha)
- * + decisão de branding fev/2026 (branco, dourado, rose gold).
+ * Plena Derma - tokens.css · v2.0
+ * 100% alinhado ao Manual da Marca (Studio Thais):
+ * paleta oficial de 6 tons + Darline Script / Darline Serif / Zalando Sans.
  */
+
+/* ─────────────────────────────────────────────────────────────
+ * 0. FONTES OFICIAIS (self-hosted, kit da marca)
+ * ───────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Darline Serif';
+  src: url('/fonts/DarlineSerif-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Darline Serif';
+  src: url('/fonts/DarlineSerif-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Darline Serif';
+  src: url('/fonts/DarlineSerif-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Darline Script';
+  src: url('/fonts/DarlineScript-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 :root {
   /* ─────────────────────────────────────────────────────────────
-   * 1. PALETA v1.0
-   * Creme quente + chocolate profundo + dourado. Rose gold escasso.
+   * 1. PALETA OFICIAL (Manual da Marca, "Código das Cores")
+   * #F0E6D8 · #C9AD90 · #B29069 · #A1846F · #503E2D · #383126
    * ───────────────────────────────────────────────────────────── */
 
-  /* Dourado - assinatura da marca */
-  --brand-primary: #C5A880;        /* dourado quente · acentos, ems, hovers */
-  --brand-accent:  #8A6B45;        /* dourado profundo · labels sobre claro, bordas */
-  --brand-secondary: #C4A29A;      /* rose gold · uso escasso */
+  --brand-primary: #B29069;        /* dourado/caramelo · acentos e destaques */
+  --brand-accent:  #A1846F;        /* marrom médio · labels e eyebrows */
+  --brand-secondary: #C9AD90;      /* bege · uso pontual */
 
-  /* Light · papel creme */
-  --brand-light:   #FAF8F5;        /* creme claro · fundo principal */
-  --brand-cream:   #F2EBE3;        /* marfim · seções alternadas e CTA final */
-  --brand-sand:    #E5D9C9;        /* areia · fundo hero fallback */
+  /* Light · creme oficial */
+  --brand-light:   #F0E6D8;        /* creme · fundo principal */
+  --brand-cream:   #E6D8C2;        /* ponte tonal creme→bege · seções alternadas */
+  --brand-sand:    #C9AD90;        /* bege oficial · fundos de apoio */
 
-  /* Dark · chocolate luxury */
-  --brand-dark:    #2A1B14;        /* marrom chocolate · seção protocolos + texto */
-  --brand-dark-2:  #3B2A20;        /* dark gradient end */
+  /* Dark · marrons oficiais */
+  --brand-dark:    #383126;        /* marrom profundo · dark sections + texto */
+  --brand-dark-2:  #503E2D;        /* marrom quente · gradientes e apoio */
 
-  /* Dourado micro-accent (alias, mantém compatibilidade de componentes) */
-  --brand-gold:    #C5A880;
+  /* Alias dourado (compatibilidade de componentes) */
+  --brand-gold:    #B29069;
 
   /* Sistema */
-  --text-muted:    #6B5F55;        /* corpo secundário · warm gray-brown */
-  --text-soft:     #97897C;        /* meta */
-  --border-faint:  rgba(42, 27, 20, 0.10);
-  --border-dark:   rgba(250, 248, 245, 0.15);
+  --text-muted:    #503E2D;        /* corpo secundário (oficial) */
+  --text-soft:     #A1846F;        /* meta (oficial) */
+  --border-faint:  rgba(56, 49, 38, 0.14);
+  --border-dark:   rgba(240, 230, 216, 0.16);
 
   /* ─────────────────────────────────────────────────────────────
-   * 2. TIPOGRAFIA
-   * Cormorant Garamond (serif display, casa com o wordmark do IG)
-   * + DM Sans (corpo) + DM Mono (labels/eyebrows).
+   * 2. TIPOGRAFIA OFICIAL
+   * Darline Serif (títulos) · Darline Script (detalhes cursivos)
+   * · Zalando Sans (corpo e labels)
    * ───────────────────────────────────────────────────────────── */
 
-  --font-serif: 'Cormorant Garamond', 'PP Editorial New', 'Tiempos Headline', Georgia, serif;
-  --font-sans:  'DM Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:  'DM Mono', 'JetBrains Mono', ui-monospace, monospace;
+  --font-serif:  'Darline Serif', 'Cormorant Garamond', Georgia, serif;
+  --font-script: 'Darline Script', 'Darline Serif', cursive;
+  --font-sans:   'Zalando Sans', 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:   'Zalando Sans', 'DM Sans', system-ui, sans-serif;
 
   /* Escala fluida (mobile-first) */
   --text-xs:    clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
@@ -63,15 +95,15 @@
   --weight-bold:     700;
 
   /* Tracking */
-  --track-tight:   -0.03em;
-  --track-h2:      -0.015em;
+  --track-tight:   -0.02em;
+  --track-h2:      -0.01em;
   --track-body:    0;
   --track-mono:    0.18em;
   --track-mono-wide: 0.3em;
   --track-button:  0.1em;
 
   /* Line height */
-  --leading-display: 0.92;
+  --leading-display: 0.95;
   --leading-h2:      1.05;
   --leading-body:    1.65;
   --leading-mono:    1.4;
@@ -117,9 +149,9 @@
   --radius-pill: 999px;
   --radius-full: 50%;
 
-  --shadow-soft:  0 1px 2px rgba(42, 27, 20, 0.05);
-  --shadow-lift:  0 30px 60px -20px rgba(42, 27, 20, 0.18);
-  --shadow-deep:  0 40px 80px -30px rgba(42, 27, 20, 0.35);
+  --shadow-soft:  0 1px 2px rgba(56, 49, 38, 0.05);
+  --shadow-lift:  0 30px 60px -20px rgba(56, 49, 38, 0.18);
+  --shadow-deep:  0 40px 80px -30px rgba(56, 49, 38, 0.35);
 
   /* ─────────────────────────────────────────────────────────────
    * 5. MOTION

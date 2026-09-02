@@ -7,6 +7,12 @@ const SITE_URL = 'https://plenaderma.com.br';
 
 export default defineConfig({
   site: SITE_URL,
+  // Rotas antigas (estrutura v1) para a nova arquitetura de cuidados
+  redirects: {
+    '/ultraformer': '/tecnologias',
+    '/lasers-e-pele': '/tratamentos-de-pele',
+    '/corporal': '/harmonizacao-corporal',
+  },
   integrations: [sitemap()],
   build: {
     inlineStylesheets: 'auto',

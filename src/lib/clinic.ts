@@ -45,9 +45,10 @@ export function whatsappUrl(message: string): string {
  */
 export const WA_MESSAGES = {
   general: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação.',
-  ultraformer: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de Ultraformer.',
   injetaveis: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de harmonização facial.',
-  lasers: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de lasers e pele.',
-  corporal: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de estética corporal.',
+  corporal: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de harmonização corporal.',
+  tecnologias: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação das tecnologias da clínica.',
+  pele: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de tratamentos de pele.',
   depilacao: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de depilação a laser.',
+  ultraformer: 'Olá! Vim do site da Plena Derma e quero agendar minha avaliação de Ultraformer.',
 } as const;
