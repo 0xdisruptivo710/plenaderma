@@ -1,41 +1,8 @@
 /*
- * Plena Derma - tokens.css · v2.0
- * 100% alinhado ao Manual da Marca (Studio Thais):
- * paleta oficial de 6 tons + Darline Script / Darline Serif / Zalando Sans.
+ * Plena Derma - tokens.css · v2.1
+ * Paleta oficial do Manual da Marca (Studio Thais) + tipografia web
+ * anterior (Cormorant Garamond / DM Sans / DM Mono), a pedido da cliente.
  */
-
-/* ─────────────────────────────────────────────────────────────
- * 0. FONTES OFICIAIS (self-hosted, kit da marca)
- * ───────────────────────────────────────────────────────────── */
-
-@font-face {
-  font-family: 'Darline Serif';
-  src: url('/fonts/DarlineSerif-Light.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Darline Serif';
-  src: url('/fonts/DarlineSerif-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Darline Serif';
-  src: url('/fonts/DarlineSerif-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Darline Script';
-  src: url('/fonts/DarlineScript-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
 :root {
   /* ─────────────────────────────────────────────────────────────
@@ -66,15 +33,14 @@
   --border-dark:   rgba(240, 230, 216, 0.16);
 
   /* ─────────────────────────────────────────────────────────────
-   * 2. TIPOGRAFIA OFICIAL
-   * Darline Serif (títulos) · Darline Script (detalhes cursivos)
-   * · Zalando Sans (corpo e labels)
+   * 2. TIPOGRAFIA
+   * Cormorant Garamond (serif display) + DM Sans (corpo)
+   * + DM Mono (labels/eyebrows).
    * ───────────────────────────────────────────────────────────── */
 
-  --font-serif:  'Darline Serif', 'Cormorant Garamond', Georgia, serif;
-  --font-script: 'Darline Script', 'Darline Serif', cursive;
-  --font-sans:   'Zalando Sans', 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono:   'Zalando Sans', 'DM Sans', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', 'PP Editorial New', 'Tiempos Headline', Georgia, serif;
+  --font-sans:  'DM Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:  'DM Mono', 'JetBrains Mono', ui-monospace, monospace;
 
   /* Escala fluida (mobile-first) */
   --text-xs:    clamp(0.72rem, 0.7rem + 0.1vw, 0.78rem);
@@ -95,15 +61,15 @@
   --weight-bold:     700;
 
   /* Tracking */
-  --track-tight:   -0.02em;
-  --track-h2:      -0.01em;
+  --track-tight:   -0.03em;
+  --track-h2:      -0.015em;
   --track-body:    0;
   --track-mono:    0.18em;
   --track-mono-wide: 0.3em;
   --track-button:  0.1em;
 
   /* Line height */
-  --leading-display: 0.95;
+  --leading-display: 0.92;
   --leading-h2:      1.05;
   --leading-body:    1.65;
   --leading-mono:    1.4;
