@@ -125,8 +125,18 @@ const businessSchema = {
         { rootMargin: '0px 0px -10% 0px', threshold: 0.1 }
       );
 
+      // Alguns aparelhos (economia de energia, data saver) seguram o
+      // autoplay dos vídeos; tenta dar play no load e no primeiro toque.
+      const nudgeVideos = () => {
+        document.querySelectorAll('video[autoplay]').forEach((v) => {
+          if (v instanceof HTMLVideoElement && v.paused) v.play().catch(() => {});
+        });
+      };
+
       const init = () => {
         document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        nudgeVideos();
+        window.addEventListener('touchstart', nudgeVideos, { once: true, passive: true });
       };
 
       if (document.readyState === 'loading') {
