@@ -99,12 +99,26 @@ const navItems = [
     color: var(--brand-light);
   }
 
+  /* O fundo com blur vive num pseudo-elemento: backdrop-filter no próprio
+     header o tornaria containing block do menu mobile position:fixed,
+     confinando o overlay à faixa do header (menu "não abre" após scroll). */
+  .site-header::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-color: transparent;
+    transition: background-color var(--dur-base) var(--ease-out);
+    pointer-events: none;
+  }
   .site-header[data-state="scrolled"] {
+    color: var(--brand-dark);
+    border-bottom: 1px solid var(--border-faint);
+  }
+  .site-header[data-state="scrolled"]::before {
     background-color: rgba(240, 230, 216, 0.92);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    color: var(--brand-dark);
-    border-bottom: 1px solid var(--border-faint);
   }
 
   .site-header__inner {
