@@ -94,7 +94,8 @@ export const TREATMENTS: Treatment[] = [
     heroTitle: 'Seu corpo também <em>merece cuidado.</em>',
     heroLead:
       'Harmonização glútea, lipo enzimática, secagem de vasinhos e protocolos para celulite, estrias e flacidez. O mesmo olhar personalizado do rosto, aplicado ao corpo inteiro.',
-    heroImage: '/fotos/corporal-real.jpg',
+    heroVideo: '/video/corporal.mp4',
+    heroPoster: '/video/corporal-poster.jpg',
     definitionEyebrow: 'O que é',
     definitionTitle: 'Contorno com naturalidade.',
     definitionBody: [
