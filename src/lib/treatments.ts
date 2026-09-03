@@ -217,11 +217,11 @@ export const TREATMENTS: Treatment[] = [
     tag: 'Novo',
     waKey: 'depilacao',
     indexDesc: 'Soprano Ice Platinum: sessões confortáveis para diferentes fototipos.',
-    indexImage: '/fotos/depilacao-corpo.jpg',
+    indexImage: '/fotos/depilacao-sessao.jpg',
     heroTitle: 'Liberdade, <em>sessão a sessão.</em>',
     heroLead:
       'Depilação a laser com Soprano Ice Platinum, agora na Plena Derma. Sessões confortáveis, tecnologia indicada para diferentes fototipos e avaliação profissional antes de começar.',
-    heroImage: '/fotos/depilacao-corpo.jpg',
+    heroImage: '/fotos/depilacao-sessao.jpg',
     definitionEyebrow: 'O que é',
     definitionTitle: 'A tecnologia que faltava na sua rotina.',
     definitionBody: [
