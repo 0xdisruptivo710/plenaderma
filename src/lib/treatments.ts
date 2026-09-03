@@ -90,7 +90,7 @@ export const TREATMENTS: Treatment[] = [
     tag: 'Corpo',
     waKey: 'corporal',
     indexDesc: 'Harmonização glútea, lipo enzimática e protocolos de contorno e firmeza.',
-    indexImage: '/fotos/corporal-real.jpg',
+    indexImage: '/fotos/corporal-creme.jpg',
     heroTitle: 'Seu corpo também <em>merece cuidado.</em>',
     heroLead:
       'Harmonização glútea, lipo enzimática, secagem de vasinhos e protocolos para celulite, estrias e flacidez. O mesmo olhar personalizado do rosto, aplicado ao corpo inteiro.',
