@@ -29,16 +29,20 @@ import { CLINIC } from '../../lib/clinic';
         <img src="/clinica/fachada-completa.jpg" alt="Fachada completa da Plena Derma na CLN 309: letreiro dourado e teto de madeira" loading="lazy" />
       </figure>
 
-      <figure class="cgal__tile reveal" style="--reveal-delay: 1">
-        <img src="/clinica/recepcao.jpg" alt="Recepção da Plena Derma: balcão de mármore e jardim vertical" loading="lazy" />
+      <figure class="cgal__tile cgal__tile--w reveal" style="--reveal-delay: 1">
+        <img src="/clinica/fachada-frontal.jpg" alt="Letreiro frontal da Plena Derma visto da quadra" loading="lazy" />
       </figure>
 
-      <figure class="cgal__tile reveal" style="--reveal-delay: 2">
-        <img src="/clinica/clinica-2.jpg" alt="Detalhe frontal do letreiro dourado da Plena Derma" loading="lazy" />
+      <figure class="cgal__tile cgal__tile--t reveal" style="--reveal-delay: 2">
+        <img src="/clinica/logo-jardim.jpg" alt="Jardim vertical da recepção com o logo dourado da Plena Derma" loading="lazy" />
       </figure>
 
-      <figure class="cgal__tile reveal" style="--reveal-delay: 3">
-        <img src="/fotos/estrutura-jardim.jpg" alt="Jardim vertical da recepção da Plena Derma" loading="lazy" />
+      <figure class="cgal__tile cgal__tile--t reveal" style="--reveal-delay: 1">
+        <img src="/clinica/entrada-v.jpg" alt="Entrada da Plena Derma com cliente chegando" loading="lazy" />
+      </figure>
+
+      <figure class="cgal__tile cgal__tile--w reveal" style="--reveal-delay: 2">
+        <img src="/clinica/bancada.jpg" alt="Bancada de atendimento da Plena Derma com pia dourada" loading="lazy" />
       </figure>
     </div>
 
@@ -101,8 +105,9 @@ import { CLINIC } from '../../lib/clinic';
   }
   .cgal__link { color: var(--brand-accent); align-self: flex-start; }
 
-  /* Galeria: fachada inteira em cima (aspect casado com o corte,
-     nada do letreiro é cortado), três fotos reais embaixo. */
+  /* Galeria: fachada inteira em cima (aspect casado com o corte, nada do
+     letreiro é cortado). Abaixo, duas linhas 7/5 com cenas completas:
+     frontal + jardim, sala + entrada. Alturas casadas por linha. */
   .cgal__grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -110,21 +115,24 @@ import { CLINIC } from '../../lib/clinic';
   }
   @media (min-width: 700px) {
     .cgal__grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(12, 1fr);
       gap: var(--space-5);
     }
     .cgal__tile--fachada { grid-column: 1 / -1; }
+    .cgal__tile--w { grid-column: span 7; }
+    .cgal__tile--t { grid-column: span 5; }
   }
 
   .cgal__tile {
     overflow: hidden;
     position: relative;
-    aspect-ratio: 3 / 2;
   }
   .cgal__tile--fachada {
     /* mesmo aspect do corte (1080x567): o letreiro aparece por completo */
     aspect-ratio: 1080 / 567;
   }
+  .cgal__tile--w { aspect-ratio: 4 / 3; }
+  .cgal__tile--t { aspect-ratio: 20 / 21; }
 
   .cgal__tile img {
     width: 100%;
